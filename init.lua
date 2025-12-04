@@ -234,6 +234,13 @@ require('nn.CognitiveAgent')
 require('nn.OntogeneticKernel')
 require('nn.NeuroAgent')
 
+-- NNECCO-A9NN: Advanced Cognitive Architecture modules
+require('nn.EchoReservoirProcessor')
+require('nn.ConsciousnessLayerProcessor')
+require('nn.EmotionProcessingUnit')
+require('nn.LLaMAOrchestrator')
+require('nn.NNECCOAgent')
+
 require('nn.MM')
 require('nn.MV')
 
