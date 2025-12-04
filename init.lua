@@ -212,6 +212,23 @@ require('nn.PixelShuffle')
 
 require('nn.StochasticGradient')
 
+-- Agent-Neuro: Reinforcement Learning and Cognitive Agent modules
+require('nn.Agent')
+require('nn.ReplayMemory')
+require('nn.Reinforce')
+require('nn.PolicyGradientCriterion')
+require('nn.ValueFunction')
+require('nn.ActorCritic')
+require('nn.QLearning')
+require('nn.AdvantageActorCritic')
+
+-- Agent-Neuro: Cognitive Architecture modules
+require('nn.Personality')
+require('nn.AtomSpace')
+require('nn.CognitiveAgent')
+require('nn.OntogeneticKernel')
+require('nn.NeuroAgent')
+
 require('nn.MM')
 require('nn.MV')
 
