@@ -82,8 +82,10 @@ function ESRP:adaptParameters(emotionalArousal, frame)
    
    -- Adjust input scaling based on emotional arousal
    if type(emotionalArousal) == "number" then
-      self.inputScaling = 1.0 + 0.3 * emotionalArousal
-      self.W_input:mul(self.inputScaling / (1.0 + 0.3 * (emotionalArousal - 0.5)))
+      local newScaling = 1.0 + 0.3 * emotionalArousal
+      local scaleFactor = newScaling / self.inputScaling
+      self.W_input:mul(scaleFactor)
+      self.inputScaling = newScaling
    end
 end
 

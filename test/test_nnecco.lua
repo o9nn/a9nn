@@ -1,6 +1,7 @@
 ------------------------------------------------------------------------
 -- NNECCO-A9NN Test Suite
 -- Tests for Neural Network Embodied Cognitive Coprocessor Orchestrator
+-- 22 test cases covering all 5 modules
 ------------------------------------------------------------------------
 
 require 'torch'

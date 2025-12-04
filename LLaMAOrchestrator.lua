@@ -21,6 +21,9 @@ function LLaMAOrch:__init(config)
    self.taskQueue = {}
    self.completedTasks = {}
    
+   -- Task counter for unique IDs
+   self.taskCounter = 0
+   
    -- Statistics
    self.stats = {
       totalRequests = 0,
@@ -81,9 +84,10 @@ function LLaMAOrch:generate(prompt, config)
       return {error = "No available instances"}
    end
    
-   -- Create task with unique ID
+   -- Create task with unique ID using counter
+   self.taskCounter = self.taskCounter + 1
    local task = {
-      id = "task_" .. os.time() .. "_" .. torch.random(100000, 999999) .. "_" .. instance.id,
+      id = string.format("task_%d_%d_%d", os.time(), self.taskCounter, instance.id),
       prompt = prompt,
       config = config,
       instance = instance.id,

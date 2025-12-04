@@ -158,9 +158,13 @@ end
 
 function NNECCOAgent:_emotePhase()
    -- Update emotional state
-   local emotion = self.personality.emotionalState
-   self.emotionUnit:setEmotion(emotion.type, emotion.intensity, emotion.valence)
-   self.registers.EPU_STATE = math.floor(self.emotionUnit.arousal * 100)
+   if self.personality and self.personality.emotionalState then
+      local emotion = self.personality.emotionalState
+      if emotion.type and emotion.intensity then
+         self.emotionUnit:setEmotion(emotion.type, emotion.intensity, emotion.valence or 0)
+         self.registers.EPU_STATE = math.floor(self.emotionUnit.arousal * 100)
+      end
+   end
 end
 
 function NNECCOAgent:_intendPhase()
