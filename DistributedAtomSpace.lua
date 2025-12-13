@@ -102,13 +102,14 @@ function DistributedAtomSpace:distributedQuery(pattern)
    -- Query local first
    local localResults = parent.query(self, pattern)
    
-   -- Query remote nodes (simulated - would use actual network calls)
+   -- Query remote nodes (would use actual network calls in production)
+   -- TODO(distributed): Implement actual HTTP/RPC calls for remote queries
+   -- See issue #XXX for distributed query implementation
    local remoteResults = {}
    for nodeId, nodeInfo in pairs(self.clusterNodes) do
       if nodeId ~= self.nodeId then
-         -- Simulated remote query
-         -- In real implementation, would make HTTP/RPC call
-         -- remoteResults[nodeId] = self:remoteQuery(nodeId, pattern)
+         -- Simulated remote query - replace with actual network call
+         -- Example: remoteResults[nodeId] = self:remoteQuery(nodeId, pattern)
       end
    end
    
@@ -142,11 +143,13 @@ function DistributedAtomSpace:sync()
       versionVectors = self.versionVectors
    }
    
-   -- Send to all nodes (simulated)
+   -- Send to all nodes (would use actual HTTP/RPC in production)
+   -- TODO(distributed): Implement actual network transport for sync operations
+   -- See issue #XXX for distributed sync implementation
    for nodeId, nodeInfo in pairs(self.clusterNodes) do
       if nodeId ~= self.nodeId then
          -- In real implementation, would send HTTP/RPC request
-         -- self:sendToNode(nodeId, syncPayload)
+         -- Example: self:sendToNode(nodeId, syncPayload)
          self.nodeStates[nodeId].lastSync = now
          self.nodeStates[nodeId].status = "synced"
       end
@@ -264,10 +267,12 @@ function DistributedAtomSpace:replicateTo(atomUuid, targetNodes)
       return {success = false, error = "Atom not found"}
    end
    
+   -- TODO(distributed): Implement actual replication protocol
+   -- See issue #XXX for replication implementation
    local replicated = 0
    for _, nodeId in ipairs(targetNodes) do
       if nodeId ~= self.nodeId and self.clusterNodes[nodeId] then
-         -- Simulated replication
+         -- In production, would send atom data via network
          replicated = replicated + 1
       end
    end

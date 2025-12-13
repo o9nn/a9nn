@@ -10,10 +10,9 @@
 -- - Lightweight processes as cognitive units
 -- - Everything-is-a-file for cognitive resources
 ------------------------------------------------------------------------
-local InfernoKernel = torch.class('nn.InfernoKernel', 'nn.Module')
+local InfernoKernel, parent = torch.class('nn.InfernoKernel', 'nn.Module')
 
 function InfernoKernel:__init(config)
-   parent = parent or nn.Module
    parent.__init(self)
    
    config = config or {}
@@ -249,8 +248,8 @@ function InfernoKernel:syscall_forget(pid, key, threshold)
    if node then
       threshold = threshold or 0.1
       if node.attention < threshold then
-         -- Remove from AtomSpace (simplified)
-         self.atomSpace.atoms[node.uuid] = nil
+         -- Mark node as forgotten by setting attention to 0
+         node:setAttention(0.0)
          return {success = true, forgotten = true}
       else
          -- Just decay attention
