@@ -241,6 +241,13 @@ require('nn.EmotionProcessingUnit')
 require('nn.LLaMAOrchestrator')
 require('nn.NNECCOAgent')
 
+-- Inferno Kernel: Distributed AGI Operating System
+require('nn.InfernoKernel')
+require('nn.CognitiveProcess')
+require('nn.DistributedAtomSpace')
+require('nn.CognitiveScheduler')
+require('nn.KernelAgent')
+
 require('nn.MM')
 require('nn.MV')
 
